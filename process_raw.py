@@ -52,16 +52,20 @@ def process_files(day_files,dest_file):
     data = {}
     text_factory = TextFactory(dest_file)
     for sinlge_file in day_files:
-        with codecs.open(sinlge_file,'r',"utf-8") as f:
+        #with codecs.open(sinlge_file,'r',"utf-8") as f:
+        with open(sinlge_file,'r') as f:
             for line in f:
+                #print line
+                #print "-"*20
                 parts = line.split('\t')
                 tid = parts[0]
                 code = parts[2]
                 if code == "200":
-                    text = parts[4]
+                    #text = parts[4]
+                    text = unicode(parts[4],encoding='utf-8')
                     if langid.classify(text)[0]=='en':
                         text_factory.add_document(tid,text)
-
+        #break
     text_factory.write()
 
 
