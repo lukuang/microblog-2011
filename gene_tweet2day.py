@@ -46,6 +46,12 @@ def gene_tweet2day(start_times,tweetids):
     tweet2day = {}
     increasing_days = sorted(start_times.keys())
 
+    #use the starting tid of each day to determine the
+    #day of a tweet. If found the "first" starting tid
+    #of a day that is bigger than a tweet's id, the 
+    #previous day of the day is the tweet's generation
+    #day
+
     for tid in tweetids:
         previous_day = increasing_days[0]
         #skip the first day 
